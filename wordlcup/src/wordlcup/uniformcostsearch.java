@@ -1,7 +1,9 @@
 package wordlcup;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.PriorityQueue;
 
 public class uniformcostsearch {
 	private final int MAX_CITIES = 11;
@@ -30,84 +32,181 @@ public class uniformcostsearch {
 	private Node moscou;
 	private Node nijni_novgorod;
 	
-	private Integer[][] map = new Integer[MAX_CITIES][MAX_CITIES];
+	private double[][] map = new double[MAX_CITIES][MAX_CITIES];
 	private HashMap<Integer, Node> cities = new HashMap<Integer, uniformcostsearch.Node>(); 
 	
 	private int ucsNumOfNodesGenerated = 0;
 	private int ucsMaxNumOfNodesInMemory = 0;
 	
-	private void matriz(int [][] map) {
-		map[KALININGRADO][SOCHI]= 2422;
-		map[KALININGRADO][ROSTOV] = 1935;
-		map[KALININGRADO][SAO_PETERSBURGO] = 946;
-		map[KALININGRADO][ECATERIMBURGO] = 2953;
-		map[SAO_PETERSBURGO][MOSCOU] = 687;
-		map[SAO_PETERSBURGO][KAZAN] = 1493;
-		map[SAO_PETERSBURGO][ECATERIMBURGO] = 2288;
-		map[MOSCOU][ROSTOV] = 1094;
-		map[MOSCOU][VOLGOGRADO] = 941;
-		map[MOSCOU][SAO_PETERSBURGO] = 687;
-		map[MOSCOU][NIJNI_NOVGOROD] = 425;
-		map[MOSCOU][ECATERIMBURGO] = 1755;
-		map[SARANSK][VOLGOGRADO] = 701;
-		map[SARANSK][NIJNI_NOVGOROD] = 307;
-		map[SARANSK][ECATERIMBURGO] = 1339;
-		map[NIJNI_NOVGOROD][SOCHI] = 1857;
-		map[NIJNI_NOVGOROD][SARANSK] = 307;
-		map[NIJNI_NOVGOROD][MOSCOU] = 425;
-		map[NIJNI_NOVGOROD][KAZAN] = 400;
-		map[KAZAN][SAMARA] = 363;
-		map[KAZAN][SAO_PETERSBURGO] = 1493;
-		map[KAZAN][NIJNI_NOVGOROD] = 400;
-		map[ECATERIMBURGO][SARANSK] = 1339;
-		map[ECATERIMBURGO][SAMARA] = 944;
-		map[ECATERIMBURGO][MOSCOU] = 1755;
-		map[ECATERIMBURGO][KALININGRADO] = 2953;
-		map[ECATERIMBURGO][SAO_PETERSBURGO] = 2288;
-		map[SAMARA][VOLGOGRADO] = 814;
-		map[SAMARA][SOCHI] = 1817;
-		map[SAMARA][ECATERIMBURGO] = 944;
-		map[SAMARA][KAZAN] = 363;
-		map[VOLGOGRADO][SOCHI] = 1003;
-		map[VOLGOGRADO][SAMARA] = 814;
-		map[VOLGOGRADO][ROSTOV] = 500;
-		map[VOLGOGRADO][MOSCOU] = 941;
-		map[VOLGOGRADO][SARANSK] = 701;
-		map[ROSTOV][SOCHI] = 570;
-		map[ROSTOV][VOLGOGRADO] = 500;
-		map[ROSTOV][MOSCOU] = 1094;
-		map[ROSTOV][KALININGRADO] = 1935;
-		map[SOCHI][NIJNI_NOVGOROD] = 1857;
-		map[SOCHI][KALININGRADO] = 2422;
-		map[SOCHI][VOLGOGRADO] = 1003;
-		map[SOCHI][SAMARA] = 1817;
-		map[SOCHI][ROSTOV] = 570;
+	private void matriz(double [][] map) {
+		map[KALININGRADO][SOCHI]= 2.713;		
+		map[KALININGRADO][SAO_PETERSBURGO] = 1.277;		
+		map[SAO_PETERSBURGO][MOSCOU] = 0.831;
+		map[SAO_PETERSBURGO][KAZAN] = 1.895;
+		map[SAO_PETERSBURGO][ECATERIMBURGO] = 1.463;
+		map[MOSCOU][ROSTOV] = 1.323;
+		map[MOSCOU][VOLGOGRADO] = 0.736;		
+		map[MOSCOU][NIJNI_NOVGOROD] = 0.152;
+		map[MOSCOU][ECATERIMBURGO] = 1.354;
+		map[SARANSK][VOLGOGRADO] = 0.332;
+		map[SARANSK][NIJNI_NOVGOROD] = 0.056;
+		map[SARANSK][ECATERIMBURGO] = 1.218;		
+		map[KAZAN][SAMARA] = 0.112;		
+		map[KAZAN][NIJNI_NOVGOROD] = 0.124;		
+		map[ECATERIMBURGO][SAMARA] = 0.516;		
+		map[ECATERIMBURGO][KALININGRADO] = 1.970;
+		map[SAMARA][VOLGOGRADO] = 0.452;
+		map[SAMARA][SOCHI] = 1.161;				
+		map[VOLGOGRADO][ROSTOV] = 0.189;				
+		map[ROSTOV][SOCHI] = 0.282;			
+		map[ROSTOV][KALININGRADO] = 2.007;
+		map[SOCHI][NIJNI_NOVGOROD] = 1.175;		
+		map[SOCHI][VOLGOGRADO] = 0.565;			
 	}
 	
+	public uniformcostsearch(){
+		matriz(this.map);
+		createNodes();
+		initHashMap();
+	}
+	
+	private void initHashMap() {
+		this.cities.put(ECATERIMBURGO, ecterimburgo);
+		this.cities.put(SAO_PETERSBURGO, sao_petersburgo);
+		this.cities.put(ROSTOV, rostov);
+		this.cities.put(SAMARA, samara);
+		this.cities.put(VOLGOGRADO, volgogrado);
+		this.cities.put(SOCHI, sochi);
+		this.cities.put(KAZAN, kazan);
+		this.cities.put(SARANSK, saransk);
+		this.cities.put(KALININGRADO, kalingrado);
+		this.cities.put(MOSCOU, moscou);
+		this.cities.put(NIJNI_NOVGOROD, nijni_novgorod);				
+	}
+
+	private void createNodes() {
+		ecterimburgo = new Node(ECATERIMBURGO);
+		sao_petersburgo = new Node(SAO_PETERSBURGO);
+		rostov = new Node(ROSTOV);
+		samara = new Node(SAMARA);
+		volgogrado = new Node(VOLGOGRADO);
+		sochi = new Node(SOCHI);
+		kazan = new Node(KAZAN);
+		saransk = new Node(SARANSK);
+		kalingrado = new Node(KALININGRADO);
+		moscou = new Node(MOSCOU);
+		nijni_novgorod = new Node(NIJNI_NOVGOROD);
+	}
+	
+	private ArrayList<Edge> findAdjEdges(int n){
+		ArrayList<Edge> adjEdges = new ArrayList<uniformcostsearch.Edge>();
+		for(int i = 0; i < MAX_CITIES; i++){
+			if(map[n][i] != 0.0){
+				Node child = new Node(i);
+				// the edge is at the same index in the list as the corresponding child
+				adjEdges.add(new Edge(cities.get(n), child, map[n][i]));
+			}
+		}
+		return adjEdges;
+	}
+	
+	private ArrayList<Node> findAdjNodes(int n){
+		ArrayList<Node> adjNodes = new ArrayList<uniformcostsearch.Node>();
+		for(int i = 0; i < MAX_CITIES; i++){
+			if(map[n][i] != 0.0){
+				// the child is at the same index in the list as the corresponding edge
+				adjNodes.add(cities.get(i));
+			}
+		}
+		return adjNodes;
+	}
+	
+	private void resetParameters(){		
+		ucsNumOfNodesGenerated = 0;
+		ucsMaxNumOfNodesInMemory = 0;		
+	}
+	
+	public ArrayList<Node> ucs(Node src, Node dest){
+
+		Comparator<Node> comparator = new NodeComparator();
+		// a queue to hold the nodes that are to be visited in order
+		PriorityQueue<Node> frontier = new PriorityQueue<Node>(MAX_CITIES, comparator);
+
+		frontier.add(src);
+
+		// a list to keep track of the visited nodes
+		ArrayList<Node> visited = new ArrayList<Node>();
+
+		while(!frontier.isEmpty()){
+			Node elem = frontier.remove();
+
+			visited.add(elem);
+
+			// if destination has been reached
+			if(elem.city == dest.city) break;
+
+			elem.expandNode(findAdjNodes(elem.city), findAdjEdges(elem.city));
+			ucsMaxNumOfNodesInMemory++;
+			
+			ArrayList<Node> childNodes = elem.adjNodes;
+			if(!childNodes.isEmpty()){
+				for(int i = 0; i < childNodes.size(); i++){
+					Node child = childNodes.get(i);
+					if(!visited.contains(child) && !frontier.contains(child)){
+						child.updateCost(elem.getCost()+map[elem.city][child.city]);
+						//System.out.println("Cost of Node: "+child.city+" is: "+child.getCost());
+						frontier.add(child);
+					}
+				}
+			}
+		}
+		ucsNumOfNodesGenerated = visited.size();
+		return visited;
+	}
+
+	
+	private class NodeComparator implements Comparator<Node>
+	{
+		@Override
+		public int compare(Node x, Node y)
+		{			
+			if (x.getCost() < y.getCost())
+			{
+				return -1;
+			}
+			if (x.getCost() > y.getCost())
+			{
+				return 1;
+			}
+			return 0;
+		}
+	}
+
+
 	private class Node{
 		private int city;
 		private ArrayList<Node> adjNodes;
 		private ArrayList<Edge> adjEdges;
-		private int tempCost = 0;
+		private double tempCost = 0.0;
 
 		public Node(int value){
 			this.city = value;
 		}
 		
 		// update the value of the cost
-		public void updateCost(int cost){
+		public void updateCost(double cost){
 			tempCost += cost;
 		}
 		
 		// get the value of the cost
-		public int getCost(){
+		public double getCost(){
 			return this.tempCost;
 		}
 		
 		// reset the cost to zero
 		@SuppressWarnings("unused")
 		public void resetCost(){
-			tempCost = 0;
+			tempCost = 0.0;
 		}
 
 		// expand the node and find its children
@@ -140,13 +239,29 @@ public class uniformcostsearch {
 		private Node src;
 		@SuppressWarnings("unused")
 		private Node dest;
-		private int cost;
+		private double cost;
 
-		public Edge(Node src, Node dest, int cost){
+		public Edge(Node src, Node dest, double cost){
 			this.src = src;
 			this.dest = dest;
 			this.cost = cost;
 		}
+	}
+	
+	public static void main(String[] args) {
+		uniformcostsearch us = new uniformcostsearch();
+		Node src = us.cities.get(2);
+		Node dest = us.cities.get(10);
+		ArrayList<Node> ucsPath = us.ucs(src, dest);
+		
+		System.out.println("The number of nodes generated is: "+us.ucsNumOfNodesGenerated);
+		System.out.println("The maximum number of nodes that existed in memory is: "+us.ucsMaxNumOfNodesInMemory);
+		System.out.print("The path from source to destination is: ");
+		for(int i = 0; i < ucsPath.size(); i++){
+			System.out.print(ucsPath.get(i).city+", ");
+		}
+		
+		us.resetParameters();
 	}
 
 }
