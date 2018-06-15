@@ -32,66 +32,65 @@ public class uniformcostsearch {
 	private Node moscou;
 	private Node nijni_novgorod;
 	
-	private double[][] map = new double[MAX_CITIES][MAX_CITIES];
+	private float[][] map = new float[MAX_CITIES][MAX_CITIES];
 	private HashMap<Integer, Node> cities = new HashMap<Integer, uniformcostsearch.Node>(); 
 	
 	private int ucsNumOfNodesGenerated = 0;
 	private int ucsMaxNumOfNodesInMemory = 0;
 	
-	private void matriz(double [][] map) {
+	private void matriz(float [][] map) {
 		//KALINGRADO
-		map[KALININGRADO][SOCHI]= 2.713;		
-		map[KALININGRADO][SAO_PETERSBURGO] = 1.277;	
-		map[KALININGRADO][ROSTOV] = 2.007;
-		map[KALININGRADO][ECATERIMBURGO] = 1.970;
+		map[KALININGRADO][SOCHI]= 2.713F;		
+		map[KALININGRADO][SAO_PETERSBURGO] = 1.277F;	
+		map[KALININGRADO][ROSTOV] = 2.007F;
+		map[KALININGRADO][ECATERIMBURGO] = 1.970F;
 		//SÃO PETERSBURGO
-		map[SAO_PETERSBURGO][MOSCOU] = 0.831;
-		map[SAO_PETERSBURGO][KAZAN] = 1.895;
-		map[SAO_PETERSBURGO][KALININGRADO] = 1.277;	
-		map[SAO_PETERSBURGO][ECATERIMBURGO] = 1.463;
+		map[SAO_PETERSBURGO][MOSCOU] = 0.831F;
+		map[SAO_PETERSBURGO][KAZAN] = 1.895F;
+		map[SAO_PETERSBURGO][KALININGRADO] = 1.277F;	
+		map[SAO_PETERSBURGO][ECATERIMBURGO] = 1.463F;
 		//MOSCOU
-		map[MOSCOU][ROSTOV] = 1.323;
-		map[MOSCOU][VOLGOGRADO] = 0.736;		
-		map[MOSCOU][NIJNI_NOVGOROD] = 0.152;
-		map[MOSCOU][ECATERIMBURGO] = 1.354;
-		map[MOSCOU][SAO_PETERSBURGO] = 0.831;
+		map[MOSCOU][ROSTOV] = 1.323F;
+		map[MOSCOU][VOLGOGRADO] = 0.736F;		
+		map[MOSCOU][NIJNI_NOVGOROD] = 0.152F;
+		map[MOSCOU][ECATERIMBURGO] = 1.354F;
+		map[MOSCOU][SAO_PETERSBURGO] = 0.831F;
 		//SARANSK
-		map[SARANSK][VOLGOGRADO] = 0.332;
-		map[SARANSK][NIJNI_NOVGOROD] = 0.056;
-		map[SARANSK][ECATERIMBURGO] = 1.218;	
+		map[SARANSK][VOLGOGRADO] = 0.332F;
+		map[SARANSK][NIJNI_NOVGOROD] = 0.056F;
+		map[SARANSK][ECATERIMBURGO] = 1.218F;	
 		//KAZAN
-		map[KAZAN][SAMARA] = 0.112;		
-		map[KAZAN][NIJNI_NOVGOROD] = 0.124;	
-		map[KAZAN][SAO_PETERSBURGO] = 1.895;
+		map[KAZAN][SAMARA] = 0.112F;		
+		map[KAZAN][NIJNI_NOVGOROD] = 0.124F;	
+		map[KAZAN][SAO_PETERSBURGO] = 1.895F;
 		//ECATERIMBURGO
-		map[ECATERIMBURGO][SAMARA] = 0.516;		
-		map[ECATERIMBURGO][KALININGRADO] = 1.970;
-		map[ECATERIMBURGO][MOSCOU] = 1.354;
-		map[ECATERIMBURGO][SAO_PETERSBURGO] = 1.463;
-		map[ECATERIMBURGO][KALININGRADO] = 1.970;
+		map[ECATERIMBURGO][SAMARA] = 0.516F;		
+		map[ECATERIMBURGO][KALININGRADO] = 1.970F;
+		map[ECATERIMBURGO][MOSCOU] = 1.354F;
+		map[ECATERIMBURGO][SAO_PETERSBURGO] = 1.463F;
+		map[ECATERIMBURGO][KALININGRADO] = 1.970F;
 		//SAMARA
-		map[SAMARA][VOLGOGRADO] = 0.452;
-		map[SAMARA][SOCHI] = 1.161;	
-		map[SAMARA][ECATERIMBURGO] = 0.516;	
-		map[SAMARA][KAZAN] = 0.112;		
+		map[SAMARA][VOLGOGRADO] = 0.452F;
+		map[SAMARA][SOCHI] = 1.161F;	
+		map[SAMARA][ECATERIMBURGO] = 0.516F;	
+		map[SAMARA][KAZAN] = 0.112F;		
 		//VOLGOGRADO
-		map[VOLGOGRADO][ROSTOV] = 0.189;	
-		map[VOLGOGRADO][SAMARA] = 0.452;
-		map[VOLGOGRADO][SARANSK] = 0.332;
-		map[VOLGOGRADO][MOSCOU] = 0.736;
-		map[VOLGOGRADO][SOCHI] = 0.565;	
+		map[VOLGOGRADO][ROSTOV] = 0.189F;	
+		map[VOLGOGRADO][SAMARA] = 0.452F;
+		map[VOLGOGRADO][SARANSK] = 0.332F;
+		map[VOLGOGRADO][MOSCOU] = 0.736F;
+		map[VOLGOGRADO][SOCHI] = 0.565F;	
 		//ROSTOV
-		map[ROSTOV][KALININGRADO] = 2.007;
-		map[ROSTOV][SOCHI] = 0.282;	
-		map[ROSTOV][VOLGOGRADO] = 0.189;
-		map[ROSTOV][MOSCOU] = 1.323;
+		map[ROSTOV][KALININGRADO] = 2.007F;
+		map[ROSTOV][SOCHI] = 0.282F;	
+		map[ROSTOV][VOLGOGRADO] = 0.189F;
+		map[ROSTOV][MOSCOU] = 1.323F;
 		//SOCHI
-		map[SOCHI][NIJNI_NOVGOROD] = 1.175;		
-		map[SOCHI][VOLGOGRADO] = 0.565;	
-		map[SOCHI][ROSTOV] = 0.282;	
-		map[SOCHI][VOLGOGRADO] = 0.565;	
-		map[SOCHI][SAMARA] = 1.161;	
-		map[SOCHI][KALININGRADO]= 2.713;
+		map[SOCHI][NIJNI_NOVGOROD] = 1.175F;		
+		map[SOCHI][VOLGOGRADO] = 0.565F;	
+		map[SOCHI][ROSTOV] = 0.282F;				
+		map[SOCHI][SAMARA] = 1.161F;	
+		map[SOCHI][KALININGRADO]= 2.713F;
 	}
 	
 	public uniformcostsearch(){
@@ -130,8 +129,8 @@ public class uniformcostsearch {
 	
 	private ArrayList<Edge> findAdjEdges(int n){
 		ArrayList<Edge> adjEdges = new ArrayList<uniformcostsearch.Edge>();
-		for(int i = 0; i < MAX_CITIES; i++){
-			if(map[n][i] != 0.0){
+		for(int i = 0; i < MAX_CITIES; i++){			
+			if(map[n][i] != 0F){
 				Node child = new Node(i);
 				// the edge is at the same index in the list as the corresponding child
 				adjEdges.add(new Edge(cities.get(n), child, map[n][i]));
@@ -143,7 +142,7 @@ public class uniformcostsearch {
 	private ArrayList<Node> findAdjNodes(int n){
 		ArrayList<Node> adjNodes = new ArrayList<uniformcostsearch.Node>();
 		for(int i = 0; i < MAX_CITIES; i++){
-			if(map[n][i] != 0.0){
+			if(map[n][i] != 0F){
 				// the child is at the same index in the list as the corresponding edge
 				adjNodes.add(cities.get(i));
 			}
@@ -184,7 +183,7 @@ public class uniformcostsearch {
 					Node child = childNodes.get(i);
 					if(!visited.contains(child) && !frontier.contains(child)){
 						child.updateCost(elem.getCost()+map[elem.city][child.city]);
-						//System.out.println("Cost of Node: "+child.city+" is: "+child.getCost());
+						System.out.println("Custo do nó: "+child.city+" é: "+child.getCost());
 						frontier.add(child);
 					}
 				}
@@ -217,26 +216,26 @@ public class uniformcostsearch {
 		private int city;
 		private ArrayList<Node> adjNodes;
 		private ArrayList<Edge> adjEdges;
-		private double tempCost = 0.0;
+		private float tempCost = 0F;
 
 		public Node(int value){
 			this.city = value;
 		}
 		
 		// update the value of the cost
-		public void updateCost(double cost){
+		public void updateCost(float cost){
 			tempCost += cost;
 		}
 		
 		// get the value of the cost
-		public double getCost(){
+		public float getCost(){
 			return this.tempCost;
 		}
 		
 		// reset the cost to zero
 		@SuppressWarnings("unused")
 		public void resetCost(){
-			tempCost = 0.0;
+			tempCost = 0F;
 		}
 
 		// expand the node and find its children
@@ -269,9 +268,9 @@ public class uniformcostsearch {
 		private Node src;
 		@SuppressWarnings("unused")
 		private Node dest;
-		private double cost;
+		private float cost;
 
-		public Edge(Node src, Node dest, double cost){
+		public Edge(Node src, Node dest, float cost){
 			this.src = src;
 			this.dest = dest;
 			this.cost = cost;
@@ -280,13 +279,13 @@ public class uniformcostsearch {
 	
 	public static void main(String[] args) {
 		uniformcostsearch us = new uniformcostsearch();
-		Node src = us.cities.get(3);
-		Node dest = us.cities.get(8);
+		Node src = us.cities.get(0);
+		Node dest = us.cities.get(3);
 		ArrayList<Node> ucsPath = us.ucs(src, dest);
 		
-		System.out.println("The number of nodes generated is: "+us.ucsNumOfNodesGenerated);
-		System.out.println("The maximum number of nodes that existed in memory is: "+us.ucsMaxNumOfNodesInMemory);
-		System.out.print("The path from source to destination is: ");
+		System.out.println("Número de nós gerados: "+us.ucsNumOfNodesGenerated);
+		System.out.println("Número de nós existentes na memória: "+us.ucsMaxNumOfNodesInMemory);
+		System.out.print("O caminho de origem para destino é: ");
 		for(int i = 0; i < ucsPath.size(); i++){
 			System.out.print(ucsPath.get(i).city+", ");
 		}
