@@ -39,29 +39,59 @@ public class uniformcostsearch {
 	private int ucsMaxNumOfNodesInMemory = 0;
 	
 	private void matriz(double [][] map) {
+		//KALINGRADO
 		map[KALININGRADO][SOCHI]= 2.713;		
-		map[KALININGRADO][SAO_PETERSBURGO] = 1.277;		
+		map[KALININGRADO][SAO_PETERSBURGO] = 1.277;	
+		map[KALININGRADO][ROSTOV] = 2.007;
+		map[KALININGRADO][ECATERIMBURGO] = 1.970;
+		//SÃO PETERSBURGO
 		map[SAO_PETERSBURGO][MOSCOU] = 0.831;
 		map[SAO_PETERSBURGO][KAZAN] = 1.895;
+		map[SAO_PETERSBURGO][KALININGRADO] = 1.277;	
 		map[SAO_PETERSBURGO][ECATERIMBURGO] = 1.463;
+		//MOSCOU
 		map[MOSCOU][ROSTOV] = 1.323;
 		map[MOSCOU][VOLGOGRADO] = 0.736;		
 		map[MOSCOU][NIJNI_NOVGOROD] = 0.152;
 		map[MOSCOU][ECATERIMBURGO] = 1.354;
+		map[MOSCOU][SAO_PETERSBURGO] = 0.831;
+		//SARANSK
 		map[SARANSK][VOLGOGRADO] = 0.332;
 		map[SARANSK][NIJNI_NOVGOROD] = 0.056;
-		map[SARANSK][ECATERIMBURGO] = 1.218;		
+		map[SARANSK][ECATERIMBURGO] = 1.218;	
+		//KAZAN
 		map[KAZAN][SAMARA] = 0.112;		
-		map[KAZAN][NIJNI_NOVGOROD] = 0.124;		
+		map[KAZAN][NIJNI_NOVGOROD] = 0.124;	
+		map[KAZAN][SAO_PETERSBURGO] = 1.895;
+		//ECATERIMBURGO
 		map[ECATERIMBURGO][SAMARA] = 0.516;		
 		map[ECATERIMBURGO][KALININGRADO] = 1.970;
+		map[ECATERIMBURGO][MOSCOU] = 1.354;
+		map[ECATERIMBURGO][SAO_PETERSBURGO] = 1.463;
+		map[ECATERIMBURGO][KALININGRADO] = 1.970;
+		//SAMARA
 		map[SAMARA][VOLGOGRADO] = 0.452;
-		map[SAMARA][SOCHI] = 1.161;				
-		map[VOLGOGRADO][ROSTOV] = 0.189;				
-		map[ROSTOV][SOCHI] = 0.282;			
+		map[SAMARA][SOCHI] = 1.161;	
+		map[SAMARA][ECATERIMBURGO] = 0.516;	
+		map[SAMARA][KAZAN] = 0.112;		
+		//VOLGOGRADO
+		map[VOLGOGRADO][ROSTOV] = 0.189;	
+		map[VOLGOGRADO][SAMARA] = 0.452;
+		map[VOLGOGRADO][SARANSK] = 0.332;
+		map[VOLGOGRADO][MOSCOU] = 0.736;
+		map[VOLGOGRADO][SOCHI] = 0.565;	
+		//ROSTOV
 		map[ROSTOV][KALININGRADO] = 2.007;
+		map[ROSTOV][SOCHI] = 0.282;	
+		map[ROSTOV][VOLGOGRADO] = 0.189;
+		map[ROSTOV][MOSCOU] = 1.323;
+		//SOCHI
 		map[SOCHI][NIJNI_NOVGOROD] = 1.175;		
-		map[SOCHI][VOLGOGRADO] = 0.565;			
+		map[SOCHI][VOLGOGRADO] = 0.565;	
+		map[SOCHI][ROSTOV] = 0.282;	
+		map[SOCHI][VOLGOGRADO] = 0.565;	
+		map[SOCHI][SAMARA] = 1.161;	
+		map[SOCHI][KALININGRADO]= 2.713;
 	}
 	
 	public uniformcostsearch(){
@@ -250,8 +280,8 @@ public class uniformcostsearch {
 	
 	public static void main(String[] args) {
 		uniformcostsearch us = new uniformcostsearch();
-		Node src = us.cities.get(2);
-		Node dest = us.cities.get(10);
+		Node src = us.cities.get(3);
+		Node dest = us.cities.get(8);
 		ArrayList<Node> ucsPath = us.ucs(src, dest);
 		
 		System.out.println("The number of nodes generated is: "+us.ucsNumOfNodesGenerated);
