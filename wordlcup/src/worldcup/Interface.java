@@ -111,50 +111,6 @@ public class Interface extends JFrame {
         comboDestino.addItem("Rostov");
         comboDestino.addItem("Sochi");
 
-        ecterimburgo.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
-        ecterimburgo.setBounds(510, 513, 20, 27);
-        getContentPane().add(ecterimburgo);
-
-        sao_petersburgo.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
-        sao_petersburgo.setBounds(232, 260, 20, 27);
-        getContentPane().add(sao_petersburgo);
-
-        rostov.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
-        rostov.setBounds(110, 541, 20, 27);
-        getContentPane().add(rostov);
-
-        samara.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
-        samara.setBounds(328, 530, 20, 27);
-        getContentPane().add(samara);
-
-        volgogrado.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
-        volgogrado.setBounds(195, 551, 20, 27);
-        getContentPane().add(volgogrado);
-
-        sochi.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
-        sochi.setBounds(54, 606, 20, 27);
-        getContentPane().add(sochi);
-
-        kazan.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
-        kazan.setBounds(421, 392, 20, 27);
-        getContentPane().add(kazan);
-
-        saransk.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
-        saransk.setBounds(272, 393, 20, 27);
-        getContentPane().add(saransk);
-
-        kalingrado.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
-        kalingrado.setBounds(52, 235, 20, 27);
-        getContentPane().add(kalingrado);
-
-        moscou.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
-        moscou.setBounds(219, 391, 20, 27);
-        getContentPane().add(moscou);
-
-        nijni_novgorod.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
-        nijni_novgorod.setBounds(317, 382, 20, 27);
-        getContentPane().add(nijni_novgorod);
-
         getContentPane().setLayout(null);
 
         JLabel lblNewLabel = new JLabel("New label");
