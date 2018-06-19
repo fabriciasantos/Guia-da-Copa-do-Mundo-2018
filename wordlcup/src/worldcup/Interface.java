@@ -2,6 +2,7 @@ package worldcup;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Interface extends JFrame {
 
@@ -23,7 +24,7 @@ public class Interface extends JFrame {
 
     public Interface() {
         setTitle("World Cup Russia 2018");
-        setSize(1000, 720);
+        setSize(994, 760);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);
@@ -126,8 +127,55 @@ public class Interface extends JFrame {
         new Interface();
 
         btnIniciar.addActionListener(e -> {
-            comboDestino.setSelectedIndex(10);
+            new Interface().execute();
         });
+    }
 
+    public void execute() {
+        uniformcostsearch us = new uniformcostsearch();
+        Node src = (Node) us.cities.get(0);
+        Node dest = (Node) us.cities.get(10);
+        ArrayList<Node> ucsPath = us.ucs(src, dest);
+        System.out.println("The number of nodes generated is: " + us.ucsNumOfNodesGenerated);
+        System.out.println("The maximum number of nodes that existed in memory is: " + us.ucsMaxNumOfNodesInMemory);
+        System.out.print("The path from source to destination is: ");
+        for (int i = 0; i < ucsPath.size(); i++) {
+            switch (ucsPath.get(i).city) {
+                case 0:
+                    System.out.print("ECATERIMBURGO ");
+                    break;
+                case 1:
+                    System.out.print("SAO_PETERSBURGO ");
+                    break;
+                case 2:
+                    System.out.print("ROSTOV ");
+                    break;
+                case 3:
+                    System.out.print("SAMARA ");
+                    break;
+                case 4:
+                    System.out.print("VOLGOGRADO ");
+                    break;
+                case 5:
+                    System.out.print("SOCHI ");
+                    break;
+                case 6:
+                    System.out.print("KAZAN ");
+                    break;
+                case 7:
+                    System.out.print("SARANSK ");
+                    break;
+                case 8:
+                    System.out.print("KALININGRADO ");
+                    break;
+                case 9:
+                    System.out.print("MOSCOU ");
+                    break;
+                case 10:
+                    System.out.print("NIJNI_NOVGOROD ");
+                    break;
+            }
+            us.resetParameters();
+        }
     }
 }

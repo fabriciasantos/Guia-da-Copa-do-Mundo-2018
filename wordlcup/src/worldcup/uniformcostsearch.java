@@ -31,64 +31,15 @@ public class uniformcostsearch {
     private Node nijni_novgorod;
 
     private float[][] map = new float[MAX_CITIES][MAX_CITIES];
-    private HashMap cities = new HashMap<Integer, Node>();
+    protected HashMap cities = new HashMap<Integer, Node>();
 
-    private int ucsNumOfNodesGenerated = 0;
-    private int ucsMaxNumOfNodesInMemory = 0;
+    protected int ucsNumOfNodesGenerated = 0;
+    protected int ucsMaxNumOfNodesInMemory = 0;
 
     public uniformcostsearch() {
         matriz(this.map);
         createNodes();
         initHashMap();
-    }
-
-    public static void main(String[] args) {
-        uniformcostsearch us = new uniformcostsearch();
-        Node src = (Node) us.cities.get(0);
-        Node dest = (Node) us.cities.get(10);
-        ArrayList<Node> ucsPath = us.ucs(src, dest);
-        System.out.println("The number of nodes generated is: " + us.ucsNumOfNodesGenerated);
-        System.out.println("The maximum number of nodes that existed in memory is: " + us.ucsMaxNumOfNodesInMemory);
-        System.out.print("The path from source to destination is: ");
-        for (int i = 0; i < ucsPath.size(); i++) {
-            switch (ucsPath.get(i).city) {
-                case ECATERIMBURGO:
-                    System.out.print("ECATERIMBURGO ");
-                    break;
-                case SAO_PETERSBURGO:
-                    System.out.print("SAO_PETERSBURGO ");
-                    break;
-                case ROSTOV:
-                    System.out.print("ROSTOV ");
-                    break;
-                case SAMARA:
-                    System.out.print("SAMARA ");
-                    break;
-                case VOLGOGRADO:
-                    System.out.print("VOLGOGRADO ");
-                    break;
-                case SOCHI:
-                    System.out.print("SOCHI ");
-                    break;
-                case KAZAN:
-                    System.out.print("KAZAN ");
-                    break;
-                case SARANSK:
-                    System.out.print("SARANSK ");
-                    break;
-                case KALININGRADO:
-                    System.out.print("KALININGRADO ");
-                    break;
-                case MOSCOU:
-                    System.out.print("MOSCOU ");
-                    break;
-                case NIJNI_NOVGOROD:
-                    System.out.print("NIJNI_NOVGOROD ");
-                    break;
-            }
-            us.resetParameters();
-        }
-
     }
 
     private void matriz(float[][] map) {
@@ -198,7 +149,7 @@ public class uniformcostsearch {
         return adjNodes;
     }
 
-    private void resetParameters() {
+    protected void resetParameters() {
         ucsNumOfNodesGenerated = 0;
         ucsMaxNumOfNodesInMemory = 0;
     }
