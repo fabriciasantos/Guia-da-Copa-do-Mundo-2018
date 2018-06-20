@@ -10,7 +10,7 @@ public class Interface extends JFrame {
     private static JComboBox<String> comboOrigem = new JComboBox<>();
     private static JComboBox<String> comboDestino = new JComboBox<>();
 
-    private static JLabel ecterimburgo = new JLabel("ecterimburgo;");
+    private static JLabel ecaterimburgo = new JLabel("ecaterimburgo;");
     private static JLabel sao_petersburgo = new JLabel("sao_petersburgo;");
     private static JLabel rostov = new JLabel("rostov;");
     private static JLabel samara = new JLabel("samara;");
@@ -30,9 +30,9 @@ public class Interface extends JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        ecterimburgo.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
-        ecterimburgo.setBounds(510, 513, 20, 27);
-        getContentPane().add(ecterimburgo);
+        ecaterimburgo.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
+        ecaterimburgo.setBounds(510, 513, 20, 27);
+        getContentPane().add(ecaterimburgo);
 
         sao_petersburgo.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
         sao_petersburgo.setBounds(232, 260, 20, 27);
@@ -88,29 +88,29 @@ public class Interface extends JFrame {
         btnIniciar.setBounds(846, 465, 124, 30);
         getContentPane().add(btnIniciar);
 
-        comboOrigem.addItem("Kalingrado");
-        comboOrigem.addItem("Saint Petersburgo");
-        comboOrigem.addItem("Moscow");
-        comboOrigem.addItem("Saransk");
-        comboOrigem.addItem("Nijni Novgorod");
-        comboOrigem.addItem("Kazan");
-        comboOrigem.addItem("Ecaterimburgo");
+        comboOrigem.addItem("Ecterimburgo");
+        comboOrigem.addItem("Sao Petersburgo");
+        comboOrigem.addItem("Rostov");
         comboOrigem.addItem("Samara");
         comboOrigem.addItem("Volgogrado");
-        comboOrigem.addItem("Rostov");
         comboOrigem.addItem("Sochi");
+        comboOrigem.addItem("Kazan");
+        comboOrigem.addItem("Saransk");
+        comboOrigem.addItem("Kalingrado");
+        comboOrigem.addItem("Moscou");
+        comboOrigem.addItem("Nijni_novgorod");
 
-        comboDestino.addItem("Kalingrado");
-        comboDestino.addItem("Saint Petersburgo");
-        comboDestino.addItem("Moscow");
-        comboDestino.addItem("Saransk");
-        comboDestino.addItem("Nijni Novgorod");
-        comboDestino.addItem("Kazan");
-        comboDestino.addItem("Ecaterimburgo");
+        comboDestino.addItem("Ecterimburgo");
+        comboDestino.addItem("Sao Petersburgo");
+        comboDestino.addItem("Rostov");
         comboDestino.addItem("Samara");
         comboDestino.addItem("Volgogrado");
-        comboDestino.addItem("Rostov");
         comboDestino.addItem("Sochi");
+        comboDestino.addItem("Kazan");
+        comboDestino.addItem("Saransk");
+        comboDestino.addItem("Kalingrado");
+        comboDestino.addItem("Moscou");
+        comboDestino.addItem("Nijni_novgorod");
 
         getContentPane().setLayout(null);
 
@@ -124,17 +124,36 @@ public class Interface extends JFrame {
 
     public static void main(String[] args) {
 
-        new Interface();
+        Interface tela = new Interface();
 
         btnIniciar.addActionListener(e -> {
-            new Interface().execute();
+            int origem = comboOrigem.getSelectedIndex();
+            System.out.println("origem = " + origem);
+            int destino = comboDestino.getSelectedIndex();
+            System.out.println("destino = " + destino);
+            tela.execute(origem, destino);
         });
     }
 
-    public void execute() {
+    public void clearWay(){
+        ecaterimburgo.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
+        sao_petersburgo.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
+        rostov.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
+        samara.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
+        volgogrado.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
+        sochi.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
+        kazan.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
+        saransk.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
+        kalingrado.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
+        moscou.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
+        nijni_novgorod.setIcon(new ImageIcon(getClass().getResource("/imagens/point-red.png")));
+    }
+
+    public void execute(int origem, int destino) {
+        clearWay();
         uniformcostsearch us = new uniformcostsearch();
-        Node src = (Node) us.cities.get(0);
-        Node dest = (Node) us.cities.get(10);
+        Node src = (Node) us.cities.get(origem);
+        Node dest = (Node) us.cities.get(destino);
         ArrayList<Node> ucsPath = us.ucs(src, dest);
         System.out.println("The number of nodes generated is: " + us.ucsNumOfNodesGenerated);
         System.out.println("The maximum number of nodes that existed in memory is: " + us.ucsMaxNumOfNodesInMemory);
@@ -142,37 +161,37 @@ public class Interface extends JFrame {
         for (int i = 0; i < ucsPath.size(); i++) {
             switch (ucsPath.get(i).city) {
                 case 0:
-                    System.out.print("ECATERIMBURGO ");
+                    ecaterimburgo.setIcon(new ImageIcon(getClass().getResource("/imagens/point-green.png")));
                     break;
                 case 1:
-                    System.out.print("SAO_PETERSBURGO ");
+                    sao_petersburgo.setIcon(new ImageIcon(getClass().getResource("/imagens/point-green.png")));
                     break;
                 case 2:
-                    System.out.print("ROSTOV ");
+                    rostov.setIcon(new ImageIcon(getClass().getResource("/imagens/point-green.png")));
                     break;
                 case 3:
-                    System.out.print("SAMARA ");
+                    samara.setIcon(new ImageIcon(getClass().getResource("/imagens/point-green.png")));
                     break;
                 case 4:
-                    System.out.print("VOLGOGRADO ");
+                    volgogrado.setIcon(new ImageIcon(getClass().getResource("/imagens/point-green.png")));
                     break;
                 case 5:
-                    System.out.print("SOCHI ");
+                    sochi.setIcon(new ImageIcon(getClass().getResource("/imagens/point-green.png")));
                     break;
                 case 6:
-                    System.out.print("KAZAN ");
+                    kazan.setIcon(new ImageIcon(getClass().getResource("/imagens/point-green.png")));
                     break;
                 case 7:
-                    System.out.print("SARANSK ");
+                    saransk.setIcon(new ImageIcon(getClass().getResource("/imagens/point-green.png")));
                     break;
                 case 8:
-                    System.out.print("KALININGRADO ");
+                    kalingrado.setIcon(new ImageIcon(getClass().getResource("/imagens/point-green.png")));
                     break;
                 case 9:
-                    System.out.print("MOSCOU ");
+                    moscou.setIcon(new ImageIcon(getClass().getResource("/imagens/point-green.png")));
                     break;
                 case 10:
-                    System.out.print("NIJNI_NOVGOROD ");
+                    nijni_novgorod.setIcon(new ImageIcon(getClass().getResource("/imagens/point-green.png")));
                     break;
             }
             us.resetParameters();
