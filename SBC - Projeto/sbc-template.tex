@@ -8,28 +8,10 @@
 %\usepackage[latin1]{inputenc}  
 \usepackage[utf8]{inputenc}  
 \usepackage{listings}
+\usepackage{float}
 % UTF-8 encoding is recommended by ShareLaTex
 
 \usepackage{color}
-%\definecolor{lightgray}{rgb}{.9,.9,.9}
-%\definecolor{darkgray}{rgb}{.4,.4,.4}
-%\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
-%
-%\lstdefinelanguage{Java}{
-%	keywords={public, class, new, true, false, catch, return, null, switch, if, in, while, do, else, case, break, for, float},
-%	keywordstyle=\color{blue}\bfseries,
-%	ndkeywords={boolean, throw, implements, this},
-%	ndkeywordstyle=\color{darkgray}\bfseries,
-%	identifierstyle=\color{black},
-%	sensitive=false,
-%	comment=[l]{//},
-%	morecomment=[s]{/*}{*/},
-%	commentstyle=\color{purple}\ttfamily,
-%	stringstyle=\color{red}\ttfamily,
-%	morestring=[b]',
-%	morestring=[b]"
-%}
-
 \definecolor{javared}{rgb}{0.6,0,0} % for strings
 \definecolor{javagreen}{rgb}{0.25,0.5,0.35} % comments
 \definecolor{javapurple}{rgb}{0.5,0,0.35} % keywords
@@ -45,7 +27,7 @@
 	numberstyle=\tiny\color{black},
 	stepnumber=1,
 	numbersep=5pt,
-	tabsize=4,
+	tabsize=2,
 	showspaces=false,
 	showstringspaces=false}
      
@@ -96,53 +78,47 @@ Com os dados definidos, inicialmente, efetuou uma normalização dos dados para 
 	\item g(X) equivale ao valor normalizado. 
 \end{enumerate}
 
-Em seguida, temos o método principal do projeto. Basicamente, dada um origem e destino, os nós visitados serão inseridos no array de forma ordenada. Enquanto o ``array frontier" não for vazio, o ``elem" guarda o valor do primeiro nó visitado. Percebe-se que, se a origem e destino tiverem os mesmos valores, o método para e retorna uma lista. Caso não tenha, o valor que foi atribuído para a variável ``elem", será expandido, fazendo uma busca dos nós adjacentes que foi inserido na matriz ``map". Considere a matriz ``map" um grafo. Observando o método, um array do tipo ``Node" foi criado para receber os nós adjacentes do nó atual. A partir do ``if" que testa a condição se esse array não esta vazio, ele busca por esses nós já foram visitados, caso não seja o custo será somado. Vale ressaltar que o método chamado \textit{NodeComparator} realiza uma tarefa importante para a busca de custo uniforme, ela compara o custos com os outros nós para saber se é maior ou não.
-
-Por fim, variáveis como ``ucsMaxNumOfNodesInMemory" e ``ucsNumOfNodesGenerated" foram criados como forma de controle para saber o número de nós que estão em memória, ou seja, nós abertos prontos para ser expandidos e para saber quantos nós foram expandidos.
+Em seguida, temos o método principal do projeto. Basicamente, dada uma origem e destino, o primeiro elemento será adicionado na fila. Nesse caso o primeiro elemento será o ponto de origem. Se a fila não estiver vazia, a variável ``cidadeAtual''do tipo ``Cidade'' guarda o primeiro elemento da fila. Como forma de controle, uma condição foi criada para saber se a cidade de origem e destino fossem iguais, caso fosse o método retornaria a cidade atual. Senão, um laço de repetição foi criado para varrer a matriz criada e buscar quais nós não eram visitados e que a matriz não retornasse um valor 0 --- se retornar valor 0 era porque não tinha encontrado nenhuma adjacência. Logo se a condição fosse verdadeira, os custos seriam somados ao longo do laço e cada cidade seria adicionada na fila para comparações futuras, até que a condição fosse falsa. 
 \begin{lstlisting} [caption= Método Principal do Projeto]
-public ArrayList<Node> ucs(Node src, Node dest) {
+public Cidade uniformCustSearch(int origem, int destino) {
+
+	PriorityQueue<Cidade> fila = new PriorityQueue<Cidade>();
+	cidades[destino].setIsFinal(true);
+	cidades[origem] .setIsInicial(true);
+	cidades[origem] .setWasVisited(true);
+	fila.add(cidades[origem]);
 	
-	Comparator<Node> comparator = new NodeComparator();
-	PriorityQueue<Node> frontier = 
-	new PriorityQueue<Node>(MAX_CITIES, comparator);
-	frontier.add(src);
+	while (!fila.isEmpty()) {
 	
-	ArrayList<Node> visited = new ArrayList<Node>();
-	
-	while (!frontier.isEmpty()) {
-		Node elem = frontier.remove();
-		visited.add(elem);
-		if (elem.city == dest.city)
-		break;
-			
-		elem.expandNode(findAdjNodes(elem.city), 
-		findAdjEdges(elem.city));
-		ucsMaxNumOfNodesInMemory++;
-		ArrayList<Node> childNodes = elem.adjNodes;
+		Cidade cidadeAtual = fila.remove();
 		
-		if (!childNodes.isEmpty()) {
-			for (int i = 0; i < childNodes.size(); i++) {
-				Node child = childNodes.get(i);
-				if (!visited.contains(child)
-				&& !frontier.contains(child)) {
-					child.updateCost(elem.getCost() + 
-					map[elem.city][child.city]);
-					System.out.println("Custo do no: " + 
-					child.city +
-					" e: " + child.getCost());
-					frontier.add(child);
-				}
+		if (cidadeAtual.isFinal() == cidades[destino].isFinal())
+		return cidadeAtual;
+		
+		for (int i = 0; i < matriz_adjacente.length; i++) {
+			if ((matriz_adjacente[cidadeAtual.getPosition()][i] != 0) && 
+			(cidades[i].wasVisited() == false)) {
+				cidades[i].setCustNode(cidadeAtual.getCustNode()
+				+ matriz_adjacente[cidadeAtual.getPosition()][i]);
+				cidades[i].setPai(cidades[cidadeAtual.getPosition()]);
+				fila.add(cidades[i]);
+				cidades[i].setWasVisited(true);
 			}
 		}
 	}
-	ucsNumOfNodesGenerated = visited.size();
-	return visited;
+	return null;
 }
 \end{lstlisting}
 \subsection{Interface}
-Para saber qual melhor caminho, o usuário deve selecionar sua origem e seu destino comboBox, localizado no canto direito da tela. A partir desse momento, ao clicar no botão iniciar, a aplicação irá apresentar o melhor caminho, mostrando os pontos das cidades a serem passadas. Logo a baixo segue a imagem.
+Para saber qual melhor caminho, o usuário deve selecionar sua origem e seu destino comboBox, localizado no canto direito da tela. A partir desse momento, ao clicar no botão iniciar, a aplicação irá apresentar o melhor caminho, mostrando os pontos das cidades a serem passadas. Logo a baixo segue a imagem \ref{fig:fig2}.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\columnwidth]{imagem/TELAESBOCO}
+	\caption{Grafo}
+	\label{fig:fig2}
+\end{figure}
 
-%Colocar a imagem da tela aqui
+%colocar imagem da interface
 \section{Conclusão}
 O presente projeto teve por objetivo aplicar o algoritmo de busca de custo uniforme sobre o problema citado anteriormente. O maior propósito é ganhar conhecimento sobre a área de Inteligência Artificial e ter suporte para aplicar os seus conceitos. Contudo, o método de busca do custo uniforme, não realiza a busca de uma forma ótima, já que ele tem um grande custo computacional, pois é necessário percorrer todos os nós da árvore, uma vez que o menor caminho mostrado por ele, não será de fato o menor.
 \end{document}
