@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.5.15)  24 JUN 2018 15:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.5.15)  25 JUN 2018 22:57
 entering extended mode
 **./sbc-template.tex
 (sbc-template.tex
@@ -641,66 +641,61 @@ File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 )
 LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10> not available
 (Font)              Font shape `OT1/phv/b/n' tried instead on input line 58.
-
-Overfull \hbox (120.41422pt too wide) in paragraph at lines 60--61
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][] 
- []
-
 <imagem/GRAFO.jpg, id=1, 1249.3074pt x 714.9912pt>
 File: imagem/GRAFO.jpg Graphic file (type jpg)
 <use imagem/GRAFO.jpg>
-Package pdftex.def Info: imagem/GRAFO.jpg  used on input line 67.
+Package pdftex.def Info: imagem/GRAFO.jpg  used on input line 68.
 (pdftex.def)             Requested size: 384.1096pt x 219.82303pt.
-[1
+ [1
 
 {C:/Users/fa_ni/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2 <./image
 m/GRAFO.jpg>]
 LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <12> not available
-(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 83.
+(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 84.
 
-Overfull \hbox (5.21304pt too wide) in paragraph at lines 95--96
-[][][][][][][][][][][][][][][][][][][][][][][] 
+Overfull \hbox (84.41385pt too wide) in paragraph at lines 101--102
+[][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (48.41348pt too wide) in paragraph at lines 99--100
-[][][][][][][][][][][][][][][][][][][][][][][][] 
+Overfull \hbox (34.01334pt too wide) in paragraph at lines 103--104
+[][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (19.61319pt too wide) in paragraph at lines 103--104
+Overfull \hbox (48.41348pt too wide) in paragraph at lines 104--105
+[][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (77.21378pt too wide) in paragraph at lines 105--106
 [][][][][][][][][][][][][][][][][] 
  []
 
 <imagem/TELAESBOCO.png, id=17, 239.4546pt x 171.7617pt>
 File: imagem/TELAESBOCO.png Graphic file (type png)
 <use imagem/TELAESBOCO.png>
-Package pdftex.def Info: imagem/TELAESBOCO.png  used on input line 116.
+Package pdftex.def Info: imagem/TELAESBOCO.png  used on input line 118.
 (pdftex.def)             Requested size: 384.1096pt x 275.53983pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [3]
-[4 <./imagem/TELAESBOCO.png>] (sbc-template.aux) ) 
+[3] [4 <./imagem/TELAESBOCO.png>] (sbc-template.aux) ) 
 Here is how much of TeX's memory you used:
- 5300 strings out of 493305
- 70843 string characters out of 3138874
- 172279 words of memory out of 3000000
- 8745 multiletter control sequences out of 15000+200000
+ 5299 strings out of 493305
+ 70834 string characters out of 3138874
+ 173279 words of memory out of 3000000
+ 8744 multiletter control sequences out of 15000+200000
  20335 words of font info for 46 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,10n,40p,904b,1126s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTeX 2.9/
-fonts/enc/dvips/base/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm
-/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Pro
-gram Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrb8a.pfb><C:/Program Files/MiKT
-eX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/ty
-pe1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/
-utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb>
-Output written on sbc-template.pdf (4 pages, 2708980 bytes).
+ 41i,10n,40p,902b,1126s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 
+2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmmi12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfont
+s/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr8
+.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:
+/Program Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrb8a.pfb><C:/Program Files/
+MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/urw/helvetic/uhvb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/ti
+mes/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmr8a.pfb>
+Output written on sbc-template.pdf (4 pages, 2709184 bytes).
 PDF statistics:
  56 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
