@@ -1,43 +1,46 @@
 public class Data {
 
-	private static final int Kaliningrado = 0;
-	private static final int Sao_Petersburgo = 1;
-	private static final int Moscou = 2;
-	private static final int Saransk = 3;
-	private static final int Nijni_Novgorod = 4;
-	private static final int Kazan = 5;
-	private static final int Ecaterimburgo = 6;
-	private static final int Samara = 7;
-	private static final int Volgogrado = 8;
-	private static final int Rostov = 9;
-	private static final int Sochi = 10;
+	public static final int Kaliningrado = 0;
+	public static final int Sao_Petersburgo = 1;
+	public static final int Moscou = 2;
+	public static final int Saransk = 3;
+	public static final int Nijni_Novgorod = 4;
+	public static final int Kazan = 5;
+	public static final int Ecaterimburgo = 6;
+	public static final int Samara = 7;
+	public static final int Volgogrado = 8;
+	public static final int Rostov = 9;
+	public static final int Sochi = 10;
 
-	public Data(Cidade[] cidades, double[][] matriz_adjacente) {
-		initCidades(cidades);
-		initMatriz(matriz_adjacente);
+	private Data() {
+		//initCidades(cidades);
+		//initMatriz(matriz_adjacente);
 	}
 
-	public void initCidades(Cidade[] cidades) {
-		cidades[0] = new Cidade("Kaliningrado", 0);
-		cidades[1] = new Cidade("São Petersburgo", 1);
-		cidades[2] = new Cidade("Moscou", 2);
-		cidades[3] = new Cidade("Saransk", 3);
-		cidades[4] = new Cidade("Nijni Novgorod", 4);
-		cidades[5] = new Cidade("Kazan", 5);
-		cidades[6] = new Cidade("Ecaterimburgo", 6);
-		cidades[7] = new Cidade("Samara", 7);
-		cidades[8] = new Cidade("Volgogrado", 8);
-		cidades[9] = new Cidade("Rostov", 9);
-		cidades[10] = new Cidade("Sochi", 10);
+	public static Cidade[] carregarCidades(){
+		return new Cidade[] {
+			new Cidade("Kaliningrado", Kaliningrado),
+			new Cidade("Sï¿½o Petersburgo", Sao_Petersburgo),
+			new Cidade("Moscou", Moscou),
+			new Cidade("Saransk", Saransk),
+			new Cidade("Nijni Novgorod", Nijni_Novgorod),
+			new Cidade("Kazan", Kazan),
+			new Cidade("Ecaterimburgo", Ecaterimburgo),
+			new Cidade("Samara", Samara),
+			new Cidade("Volgogrado", Volgogrado),
+			new Cidade("Rostov", Rostov),
+			new Cidade("Sochi", Sochi)
+		};
 	}
 
-	public void initMatriz(double[][] matriz_adjacente) {
+	public static double[][] initMatriz(int size) {
+		double[][] matriz_adjacente = new double[size][size];
 		//kalinigrado
     	insertData(matriz_adjacente, Kaliningrado, Sao_Petersburgo, 0.413754968);
     	insertData(matriz_adjacente, Kaliningrado, Ecaterimburgo, 0.666666667);
     	insertData(matriz_adjacente, Kaliningrado, Rostov, 0.667940849);
     	insertData(matriz_adjacente, Kaliningrado, Sochi , 0.911513138);
-    	//São Petersburgo
+    	//Sï¿½o Petersburgo
     	insertData(matriz_adjacente, Sao_Petersburgo, Moscou, 0.262267046);
     	insertData(matriz_adjacente, Sao_Petersburgo, Kazan, 0.625774918);
     	insertData(matriz_adjacente, Sao_Petersburgo, Ecaterimburgo, 0.49021401);
@@ -88,10 +91,11 @@ public class Data {
     	insertData(matriz_adjacente, Sochi, Samara, 0.384539962);
     	insertData(matriz_adjacente, Sochi, Volgogrado, 0.177114178);
     	insertData(matriz_adjacente, Sochi, Nijni_Novgorod, 0.389579015);
-    	insertData(matriz_adjacente, Sochi, Kaliningrado , 0.911513138);   
+		insertData(matriz_adjacente, Sochi, Kaliningrado , 0.911513138);   
+		return matriz_adjacente;
     }
 
-	public void insertData(double[][] matriz_adjacente, int origem, int destino, double valor) {
+	public static void insertData(double[][] matriz_adjacente, int origem, int destino, double valor) {
 		matriz_adjacente[origem][destino] = valor;
 		matriz_adjacente[destino][origem] = valor;
 	}

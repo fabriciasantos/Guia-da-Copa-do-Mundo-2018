@@ -5,11 +5,12 @@ import java.util.PriorityQueue;
  */
 public class UniformCustSearch extends Cidade implements Comparable<Cidade>{
 
-    protected static double[][] matriz_adjacente = new double[11][11];
-    protected static Cidade[] cidades = new Cidade[11];
+    protected static double[][] matriz_adjacente;
+    protected static Cidade[] cidades;
 
     public UniformCustSearch() {
-        new Data(cidades, matriz_adjacente);
+        cidades = Data.carregarCidades();
+        matriz_adjacente = Data.initMatriz(cidades.length);
     }
 
     public Cidade uniformCustSearch(int origem, int destino) {
