@@ -58,6 +58,7 @@ public class Interface extends JFrame {
 		Interface tela = new Interface();
 
 		btnIniciar.addActionListener(e -> {
+			System.out.println("Ori " + comboOrigem.getItemAt(comboOrigem.getSelectedIndex()) + " Des " + comboDestino.getItemAt(comboDestino.getSelectedIndex()));
 			tela.showPath(new UniformCustSearch().uniformCustSearch(comboOrigem.getSelectedIndex(),
 					comboDestino.getSelectedIndex()));
 		});

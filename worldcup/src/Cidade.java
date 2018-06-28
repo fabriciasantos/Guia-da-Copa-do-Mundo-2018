@@ -96,6 +96,11 @@ public class Cidade implements Comparable<Cidade>{
     }
 
     @Override
+    public String toString() {
+        return "[" + cidade.toUpperCase() + "] ";
+    }
+
+    @Override
     public int compareTo(Cidade cidade) {
         if (this.getCustNode() < cidade.getCustNode()) return -1;
         if (this.getCustNode() > cidade.getCustNode()) return 1;
