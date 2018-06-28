@@ -35,7 +35,7 @@
 
 \title{Russia 2018 World Cup Route Using The Uniform Cost Method}
 
-\author{Clovis Oliveira Mangueira\inst{1}, Fabrícia de Jesus Santos\inst{1}, \\ Paulo Victor dos Santos\inst{1}, 	Weslley Henrique Santos\inst{1}}
+\author{Clóvis Oliveira Mangueira\inst{1}, Fabrícia de Jesus Santos\inst{1}, \\ Paulo Victor dos Santos\inst{1}, Weslley Henrique Santos\inst{1}}
 
 
 \address{Departamento de Sistemas de Informação \\Universidade Federal de Sergipe (UFS) -- Itabaiana, SE -- Brasil\\
@@ -52,7 +52,7 @@ No Brasil, o futebol é a paixão da nação e muitas vezes sendo considerado o 
 
 O jogos são realizados em províncias (estados) diferentes com grande distância, o que consequentemente, leva muito tempo para viagem. Para facilitar o deslocamento e poder acompanhar melhor os jogos, o projeto tem como objetivo apresentar o melhor caminho para os amantes de futebol. Utilizando o método de custo uniforme, os critérios escolhidos para apresentar o melhor caminho, foram: distância, tempo e número de pedágio de um percusso.
 \section{Busca de Custo Uniforme}
-A estratégia de busca uniforme é uma pequena modificação da estratégia de busca em largura. Na busca em largura primeiro expande-se o nó raiz, depois todos os nós gerados por esse, e assim por diante até que se chegue ao estado meta. Ou seja, todos os nós que estão numa profundidade d da árvore serão expandidos e visitados antes que os nós que estão numa profundidade d+1.
+A estratégia de busca uniforme é uma pequena modificação da estratégia de busca em largura. Na busca em largura primeiro expande-se o nó raiz, depois todos os nós gerados por esse, e assim por diante até que se chegue ao estado meta. Ou seja, todos os nós que estão numa profundidade da árvore serão expandidos e visitados antes que os nós que estão numa profundidade d+1.
 
 A estratégia de busca uniforme é basicamente a mesma coisa. Mas ao invés de pegar o primeiro nó expandido que está na lista aguardando processamento, o nó que possui o menor custo (g(N)) será escolhido para ser expandido. Se certas condições sempre forem cumpridas, garante-se que a primeira solução encontrada será a mais barata. Uma condição é a seguinte: o custo do caminho nunca deve ir diminuindo conforme avançamos por ele, em outras palavras, é importante que:
 \begin{lstlisting}[caption = Pseudo-código para calcular a função g(n)]
@@ -62,7 +62,7 @@ g(N) e o custo conhecido de ir-se da raiz ate o nodulo N.
 \end{lstlisting}
 
 \section{Aplicação}
-A aplicação se baseou com dados fornecido por uma empresa russa Astra Log. A mesma é uma empresa que oferece serviços de transporte de mercadoria para vários países, principalmente a Rússia. Logo, foi possível gerar o grafo para ajudar no desenvolvimento do projeto. Pode-se acompanhar o grafo na \ref{fig:fig1}, onde cada ponto representa as cidades que acontecerão os jogos para a copa do mundo. Dentro dos dados fornecidos pela empresa Astra Log, estava a distancia de uma cidade para outra. Porém, para obter o tempo e o número de pedágio, realizou-se uma busca no Google Maps. 
+A aplicação baseou-se com dados fornecido por uma empresa russa Astra Log. A mesma é uma empresa que oferece serviços de transporte de mercadoria para vários países, principalmente a Rússia. Logo, foi possível gerar o grafo para ajudar no desenvolvimento do projeto. Pode-se acompanhar o grafo na Figura \ref{fig:fig1}, onde cada ponto representa as cidades que acontecerão os jogos para a copa do mundo. Dentro dos dados fornecidos pela empresa Astra Log, estava a distância de uma cidade para outra. Porém, para obter o tempo e o número de pedágio, realizou-se uma busca no Google Maps. 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.9\columnwidth]{imagem/GRAFO}
